@@ -1,0 +1,34 @@
+import java.util.Scanner;
+/**
+ * Lab00
+ * Stores ten numbers from the user and prints the numbers in backwards sequence
+ * 
+ * @author Helen Sohn
+ * @version 2-13-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Driver00
+{
+    public static final int NUMITEMS = 10;
+    /**
+     * main method for the Driver00 class
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args)
+    {
+        double[] array = new double[NUMITEMS];
+        Scanner keyboard = new Scanner(System.in);
+        for(int x=0; x<NUMITEMS; x++)
+        {
+            System.out.print("#" + (x+1) + ": ");
+            array[x] = keyboard.nextDouble();
+        }
+        System.out.println("The numbers you typed in, backwards:");
+        for(int x=0; x<NUMITEMS; x++)
+            System.out.println("\t" + array[NUMITEMS-x-1]);
+        for(int x=NUMITEMS-1; x>=0; x--)
+            System.out.println("\t" + array[x]);
+    }
+}
