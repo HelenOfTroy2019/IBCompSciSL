@@ -5,7 +5,6 @@ import java.util.Scanner;
  * values, then stores all the numbers in Celsius in another array
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-15-18
  * @period 2
  * @teacher Coglianese
