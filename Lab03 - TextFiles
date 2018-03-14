@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import javax.swing.JOptionPane;
+/**
+ * Lab03
+ * Stores ten Fahrenheit numbers from a text file and calculates all respective numbers in Celsius in another array
+ * 
+ * @author Helen Sohn
+ * @version 2-16-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Driver03
+{
+    public static int num = 0;
+    public static String name;
+    /**
+     * main method for the Driver03 class that calculates the Celsius values for each Fahrenheit value
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args) throws Exception
+    {
+        Scanner keyboard = new Scanner(System.in);
+        Scanner infile = new Scanner(new File(JOptionPane.showInputDialog("Enter the name of the text file: ")));
+        double[] fahr = new double[0];
+        double[] cel = new double[0];
+        
+        while(infile.hasNext())
+        {
+            fahr = new double[num+1];
+            fahr[num] = infile.nextDouble();
+            num++;
+        }
+        cel = new double[num+1];
+        for(int b=0; b<num; b++)
+        {
+            cel[b] = (double)((int)(0.555555556*(fahr[b]-32)*100))/100;
+        }
+        System.out.println("Fahrenheit\t| Celsius");
+        System.out.println("----------------|--------------------");
+        for(int b=0; b<num; b++)
+            System.out.println(fahr[b]+"\t\t| "+cel[b]);
+    }
+}
