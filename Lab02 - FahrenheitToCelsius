@@ -1,0 +1,53 @@
+import java.util.Scanner;
+/**
+ * Lab02
+ * Stores ten Fahrenheit numbers from the user and generates five more 
+ * values, then stores all the numbers in Celsius in another array
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-15-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Driver02
+{
+    public static final int NUMITEMS = 15;
+    /**
+     * main method for the Driver02 class that calculates the 
+     * Celsius values for each Fahrenheit value
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args)
+    {
+        double[] fahr = new double[NUMITEMS];
+        double[] cel = new double[NUMITEMS];
+        Scanner keyboard = new Scanner(System.in);
+        
+        for(int x=0; x<10; x++)
+        {
+            System.out.print("Fahrenheit #" + (x+1) + ": ");
+            fahr[x] = keyboard.nextDouble();
+        }
+        for(int a=10; a<NUMITEMS; a++)
+        {
+            fahr[a] = (double)((int)(Math.random()*10000))/10;
+        }
+        for(int b=0; b<NUMITEMS; b++)
+        {
+            cel[b] = (double)((int)(0.555555556*(fahr[b]-32)*10))/10;
+        }
+        System.out.println("Fahrenheit" + "\t" + "| " + "Celsius");
+        for(int c=0; c<16; c++)
+            System.out.print("-");
+        System.out.print("|");
+        for(int x=0; x<17; x++)
+            System.out.print("-");
+        System.out.println("-");
+        for(int y=0; y<NUMITEMS; y++)
+        {
+            System.out.println(fahr[y]+"\t"+"\t"+"|"+cel[y]);
+        }
+    }
+}
