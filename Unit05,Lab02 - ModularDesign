@@ -1,0 +1,101 @@
+
+import java.io.*;
+/**
+ * Lab02
+ * Driver02 creates an array of doubles from a txt file and sorts in descending order
+ * 
+ * @author Helen Sohn
+ * @version 3/19/18
+ * @teacher Coglianese
+ * @period 2
+ */
+public class Driver02
+{
+    /**
+     * maint method of Driver02
+     * 
+     * @param args     String array of arguments
+     */
+    public static void main(String[] args) throws Exception
+    {
+        double[] array = input("Z:\\Lab02\\data.txt");
+        sort(array);
+        output(array, "output.txt");
+    }
+
+    /**
+     * returns an array of doubles from the txt file
+     * 
+     * @param filename     name of file being read
+     */
+    public static double[] input(String filename) throws Exception
+    {
+        Scanner infile = new Scanner(new File(filename));
+        int numItems = infile.nextInt();
+        double[] array = new double[numItems];
+        for(int x=0; x<numItems; x++)
+        {
+            array[x] = infile.nextDouble();
+        }
+        return array;
+    }
+
+    /**
+     * sorts a given array from largest to smallest
+     * 
+     * @param array     array of doubles to be sorted
+     */
+    public static void sort(double[] array)
+    {
+        int maxPos;
+        for(int k = 0; k < array.length; k++)
+        {
+            maxPos = findMax(array, array.length - k - 1);
+            swap(array, maxPos, array.length - k - 1);
+        }
+    }
+
+    /**
+     * finds the index of the maximum value from the given array
+     * 
+     * @param array     array from which the max value index is found
+     * @param upper     upper limit/size of array
+     */
+    public static int findMax(double[] array, int upper)
+    {
+        int index = 0;
+        for(int x=0; x<upper; x++)
+        {
+            if(array[x]>array[index])
+                index = x;
+        }
+        return index;
+    }
+
+    /**
+     * swaps the two given values of an array
+     * 
+     * @param array     array whose two values are being swapped
+     * @param a         index of first value being swapped
+     * @param b         index of second value being swapped
+     */
+    public static void swap(double[] array, int a, int b)
+    {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
+    }
+
+    /**
+     * prints the given array into a text file
+     * 
+     * @param array        array being printed
+     * @param filename     name of new file being created
+     */
+    public static void output(double[] array, String filename) throws Exception
+    {
+        System.setOut(new PrintStream(new FileOutputStream(filename)));
+        for(int k = 0; k < array.length; k++)
+            System.out.println(array[k]);
+    }
+}
