@@ -71,7 +71,6 @@ public class Driver06
  * Abstract Shape Class allows Circle, Rectangle, Triangle classes to extend it
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-23-18
  * @period 2
  * @teacher Coglianese
@@ -91,7 +90,6 @@ public abstract class Shape
  * Creates Circle with given radius value
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-23-18
  * @period 2
  * @teacher Coglianese
@@ -158,7 +156,6 @@ public class Circle extends Shape
  * Creates Rectangle with given length and height values
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-23-18
  * @period 2
  * @teacher Coglianese
@@ -237,7 +234,6 @@ public class Rectangle extends Shape
  * Creates Triangle shapes with given side length value
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-23-18
  * @period 2
  * @teacher Coglianese
@@ -294,7 +290,6 @@ public class Triangle extends Shape
  * Creates Square with given side length value
  * 
  * @author Helen Sohn
- * @author Meredith Liou
  * @version 2-23-18
  * @period 2
  * @teacher Coglianese
