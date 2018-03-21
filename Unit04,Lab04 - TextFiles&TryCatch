@@ -1,0 +1,61 @@
+/**
+ * Lab04
+ * Accesses specified data file and finds the sum, average, minimum, and maximum values
+ * If data file is not found, user is prompted again a maximum of three times
+ * 
+ * @author Helen Sohn
+ * @version 2-20-18
+ * @period 2
+ * @teacher Coglianese
+ */
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+public class Driver04
+{
+    /**
+     * main method that calculates the locates the data file and calculates the four values
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args)
+    {
+        Scanner infile = null;
+        int z=0;
+        do
+        {
+            try
+            {
+                String filename = JOptionPane.showInputDialog("Enter filename");
+                infile = new Scanner (new File(filename));
+            }
+            catch (FileNotFoundException e)
+            {
+                JOptionPane.showMessageDialog(null, "Error: File not found.");
+                z++;
+                
+            }
+        } while(z<3);
+        if(z==3) {
+            System.out.println("File is not found. Please try again later.");
+            System.exit(0);
+        }
+        final int NUMITEMS = infile.nextInt();
+        double[] array = new double[NUMITEMS];
+        double sum = 0.0;
+        for(int x = 0; x < NUMITEMS; x++)
+            array[x] = infile.nextDouble();
+        for(int x = 0; x < NUMITEMS; x++)
+            sum = sum += array[x];
+        double avg = sum/NUMITEMS;
+        for(int x = 0; x < NUMITEMS; x++)
+            avg = sum/NUMITEMS;
+        double min = array[0];
+        for(int x = 0; x <NUMITEMS; x++)
+            min = Math.min(array[x], min);
+        double max =0;
+        for(int x = 0; x <NUMITEMS; x++)
+            max = Math.max(array[x], max);
+        System.out.print("Sum:"+sum+"\nAverage:"+avg+"\nMin:"+min+"\nMax:"+max);
+    }
+}
