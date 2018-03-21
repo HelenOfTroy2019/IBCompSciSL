@@ -1,0 +1,132 @@
+/**
+ * Lab10
+ * Calculates various values of a set of golf scores
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 3-1-18
+ * @period 2
+ * @teacher Coglianese
+ */
+import javax.swing.JFrame;
+public class Driver10
+{
+    /**
+     * Main method of Driver10
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame("Unit4, Lab09: Miniature Golf");
+        frame.setSize(500, 150);
+        frame.setLocation(150, 100);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(new Panel10());
+        frame.setVisible(true);
+    }
+}
+
+
+
+import javax.swing.*;
+import java.awt.*;
+/**
+ * Creates 8 JPanel labels and can implement four different methods on the panels
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 3-5-2018
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Display10 extends JPanel
+{
+    private JLabel[] bits;
+    private JLabel convert;
+    public Display10()
+    {
+        setLayout(new GridLayout(1, 8));
+        bits = new JLabel[8];
+        for(int x = 0; x < bits.length; x++)
+        {
+            bits[x] = new JLabel("", SwingConstants.CENTER);
+            bits[x].setFont(new Font("Serif", Font.BOLD, 50));
+            add(bits[x]);
+        }
+        convert = new JLabel("", SwingConstants.CENTER);
+        add(convert);
+        randomize();
+    }
+
+    /**
+     * Randomizes number values in the JLabel
+     */
+    public void randomize()
+    {
+        for(int x = 0; x < bits.length; x++)
+            bits[x].setText("" + (int)(Math.random() * 2 + 0));
+        convert();
+    }
+
+    /**
+     * Reverses number values in the JLabel
+     */
+    public void reverse()
+    {
+        int a = Integer.parseInt(bits[0].getText());
+        bits[0].setText("" + Integer.parseInt(bits[7].getText()));
+        bits[7].setText("" + a);
+        int b = Integer.parseInt(bits[1].getText());
+        bits[1].setText("" + Integer.parseInt(bits[6].getText()));
+        bits[6].setText("" + b);
+        int c = Integer.parseInt(bits[2].getText());
+        bits[2].setText("" + Integer.parseInt(bits[5].getText()));
+        bits[5].setText("" + c);
+        int d = Integer.parseInt(bits[3].getText());		
+        bits[3].setText("" + Integer.parseInt(bits[4].getText()));
+        bits[4].setText("" + d); 
+        convert();   
+    }
+
+    /**
+     * Shifts the number values in the JLabel
+     */
+    public void shift()
+    {
+        for(int x = 0; x < 7; x++)
+        {
+            bits[x].setText("" + Integer.parseInt(bits[x+1].getText()));
+        }
+        bits[7].setText("" + 0);
+        convert();
+    }
+
+    /**
+     * Rotates the number values in the JLabel
+     */
+    public void rotate()
+    {
+        int temp = Integer.parseInt(bits[0].getText());
+        for(int x = 0; x < 7; x++)
+        {
+            bits[x].setText("" + Integer.parseInt(bits[x+1].getText()));
+        }
+        bits[7].setText("" + temp);
+        convert();
+    }
+
+    /**
+     * Converts the number values in the JLabel
+     */
+    private void convert()
+    {
+        int converted = 0;
+        int total = 0;
+        for(int x = 0; x < 8; x++)
+        {
+            total = converted += Integer.parseInt(bits[x].getText()) * Math.pow(2, 7-x);
+        }
+        convert.setText("" + total);
+    }
+}
