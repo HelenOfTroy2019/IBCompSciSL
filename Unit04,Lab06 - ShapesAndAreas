@@ -1,0 +1,366 @@
+/**
+ * Lab06
+ * Creates circle, rectangle, square, and triangle shapes and prints called 
+ * method values to a separate text file
+ * 
+ * @author Helen Sohn
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+import java.io.*;
+import java.util.*;
+import javax.swing.JOptionPane;
+import java.io.*;
+public class Driver06
+{
+    /**
+     * Main method of Driver06 Class
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args) throws Exception
+    {
+        System.setOut(new PrintStream(new FileOutputStream("output.txt")));
+
+        Circle c = new Circle(75);
+        Rectangle r = new Rectangle(30.0, 40.);    
+        Square s = new Square(50.0);		
+        Triangle t = new Triangle(37);   
+
+        System.out.println("Circle");
+        System.out.println("------");
+        System.out.println("Radius: " + c.getRadius());
+        System.out.println("Area: " + c.findArea());
+        System.out.println("Circumference: " + c.findCircumference());
+        System.out.println();
+
+        System.out.println("Rectangle");
+        System.out.println("---------");
+        System.out.println("Length: " + r.getLength());
+        System.out.println("Height: " + r.getHeight());
+        System.out.println("Area: " + r.findArea());
+        System.out.println("Perimeter: " + r.findPerimeter());
+        System.out.println("Diagonal: " + r.findDiagonal());
+        System.out.println();
+
+        System.out.println("Square");
+        System.out.println("------");
+        System.out.println("Length: " + s.getSide());
+        System.out.println("Area: " + s.findArea());
+        System.out.println("Perimeter: " + s.findPerimeter());
+        System.out.println("Diagonal: " + s.findDiagonal());
+        s.setSide(10.0);
+        System.out.println("New side: " + s.getSide());
+        System.out.println("New area: " + s.findArea());	
+        System.out.println(); 
+
+        System.out.println("Triangle");
+        System.out.println("--------");
+        System.out.println("Length: " + t.getSide());
+        System.out.println("Area: " + t.findArea());
+        System.out.println("Perimeter: " + t.findPerimeter());
+        System.out.println();
+    }
+}
+
+
+
+/**
+ * Lab06
+ * Abstract Shape Class allows Circle, Rectangle, Triangle classes to extend it
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public abstract class Shape
+{
+    /**
+     * abstract method findArea() for 
+     */
+    public abstract double findArea();
+}
+
+
+
+/**
+ * Lab06
+ * Creates Circle with given radius value
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Circle extends Shape
+{
+    private double myRadius;
+
+    /**
+     * Constructs a circle with initial radius specified by x.
+     * 
+     * @param x    initial radius
+     */
+    public Circle(double x)
+    {
+        myRadius = x;
+    }
+
+    /**
+     * Returns the circle's radius
+     * 
+     * @return	 radius
+     */
+    public double getRadius()
+    {
+        return myRadius;
+    }
+
+    /**
+     * Sets the radius to the input number.
+     * 
+     * @param x	    assigns x to myRadius
+     */
+    public void setRadius(double x)
+    {
+        myRadius = x;
+    }
+
+    /**
+     * Calculates and returns the circle's area.
+     * 
+     * @return	 area
+     */
+    public double findArea()
+    {
+        return 3.14*myRadius*myRadius;
+    }
+
+    /**
+     * Calculates and returns the circle's circumference.
+     * 
+     * @return	 circumference
+     */
+    public double findCircumference()
+    {
+        return 3.14*2*myRadius;
+    }
+}
+
+
+
+/**
+ * Lab06
+ * Creates Rectangle with given length and height values
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Rectangle extends Shape
+{
+    private double length, height;
+    
+    /**
+     * Constructs a rectangle with initial length and height specified by x and y
+     * 
+     * @param x     initial length
+     * @param y     initial height
+     */
+    public Rectangle(double x, double y)
+    {
+        length = x;
+        height = y;
+    }
+    
+    /**
+     * Returns the rectangle's area
+     * 
+     * @return     area
+     */
+    public double findArea()
+    {
+        return 0.0;
+    }
+    
+    /**
+     * Returns rectangle's length
+     * 
+     * @return     length
+     */
+    public double getLength()
+    {
+        return length;
+    }
+    
+    /**
+     * Returns rectangle's height
+     * 
+     * @return     height
+     */
+    public double getHeight()
+    {
+        return height;
+    }
+    
+    /**
+     * Returns rectangle's perimeter
+     * 
+     * @return     perimeter
+     */
+    public double findPerimeter()
+    {
+        return (2*length)+(2*height);
+    }
+    
+    /**
+     * Returns rectangle's diagonal
+     * 
+     * @return     diagonal
+     */
+    public double findDiagonal() 
+    {
+        return Math.pow((length*length)+(height*height), .5);
+    }
+}
+
+
+
+/**
+ * Lab06
+ * Creates Triangle shapes with given side length value
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Triangle extends Shape
+{
+    private double side;
+    
+    /**
+     * Constructs a triangle with initial radius specified by s
+     * 
+     * @param s     initial side length
+     */
+    public Triangle(double s)
+    {
+        side = s;
+    }
+    
+    /**
+     * Returns triangle's area
+     * 
+     * @return     area
+     */
+    public double findArea()
+    {
+        return Math.pow(3,0.5)/4*side*side;
+    }
+    
+    /**
+     * Returns triangle's side length
+     * 
+     * @return     side
+     */
+    public double getSide()
+    {
+        return side;
+    }
+    
+    /**
+     * Returns triangle's perimeter
+     * 
+     * @return     perimeter
+     */
+    public double findPerimeter()
+    {
+        return 3*side;
+    }
+}
+
+
+
+/**
+ * Lab06
+ * Creates Square with given side length value
+ * 
+ * @author Helen Sohn
+ * @author Meredith Liou
+ * @version 2-23-18
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Square extends Rectangle
+{
+    private double side;
+    
+    /**
+     * Constructs a square with initial side specified by s
+     * 
+     * @param s     side
+     */
+    public Square(double s)
+    {
+        super(s, s);
+        side = s;
+    }
+    
+    /**
+     * Returns square's area
+     * 
+     * @return     area
+     */
+    public double findArea()
+    {
+        return 0.0;
+    }
+    
+    /**
+     * Returns square's side
+     * 
+     * @return     side
+     */
+    public double getSide()
+    {
+        return side;
+    }
+    
+    /**
+     * Sets square's side with given x
+     * 
+     * @param x     side
+     */
+    public void setSide(double x)
+    {
+        side = x;
+    }
+    
+    /**
+     * Returns square's perimeter
+     * 
+     * @return     perimeter
+     */
+    public double findPerimeter()
+    {
+        return 4*side;
+    }
+    
+    /**
+     * Returns square's diagonal
+     * 
+     * @return     diagonal
+     */
+    public double findDiagonal()
+    {
+        return super.findDiagonal();
+    }
+}
