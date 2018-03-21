@@ -1,0 +1,125 @@
+/**
+ * Lab09
+ * Calculates various values of a set of golf scores
+ * 
+ * @author Helen Sohn
+ * @version 3-1-18
+ * @period 2
+ * @teacher Coglianese
+ */
+import javax.swing.JFrame;
+public class Driver09
+{
+    /**
+     * Main method of Driver09
+     * 
+     * @param args     String array
+     */
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame("Unit4, Lab09: Miniature Golf");
+        frame.setSize(500, 150);
+        frame.setLocation(150, 100);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(new Panel09());
+        frame.setVisible(true);
+    }
+}
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+/**
+ * Calculates the four methods randomize, findTotal, findHardestHole, and findAces
+ * 
+ * @author Helen Sohn
+ * @version 3-118
+ * @period 2
+ * @teacher Coglianese
+ */
+public class Scorecard09 extends JPanel
+{
+    private JTextField[] input;
+    public Scorecard09()
+    {
+        setLayout(new GridLayout(2, 18));
+
+        for(int x = 1; x <= 18; x++)
+        {
+            add(new JLabel("" + x, SwingConstants.CENTER));
+        }
+
+        input = new JTextField[18];
+        for(int x = 0; x < input.length; x++)
+        {
+            input[x] = new JTextField();
+            add(input[x]);
+        }
+    }
+
+    /**
+     * Randomizes all the values inside the set
+     */
+    public void randomize()
+    {
+        for(int x = 0; x < input.length-1; x++)
+        {
+            input[x].setText("" + (int)(Math.random() * 4 + 1));
+        }
+    }
+
+    /**
+     * Calculates the total value of the set
+     * 
+     * @return     total value of scores
+     */
+    public int findTotal()
+    {
+        int answer = 0;
+        for(int x = 0; x < input.length-1; x++)
+        {
+            answer += Integer.parseInt(input[x].getText());
+        }
+        return answer;
+    }
+
+    /**
+     * Finds number of aces
+     * 
+     * @return     number of aces
+     */
+    public int findAces()
+    {
+        int answer = 0;
+        for(int x =0; x< input.length; x++)
+        {
+            if(Integer.parseInt(input[x].getText()) == 1)
+            {
+                answer ++;
+            }
+        }
+        return answer;
+    }
+
+    /**
+     * Finds the hardest hole
+     * 
+     * 
+     * @return     hardest hole value
+     */
+    public int findHardestHole()
+    {
+        int answer = 0, value = Integer.parseInt(input[0].getText());
+        for(int x = 1; x < input.length; x++)
+        {
+            if(Integer.parseInt(input[x].getText()) > value)
+            {
+                answer = x;
+                value = Integer.parseInt(input[x].getText());
+            }
+        }
+        return answer;
+    }
+}
