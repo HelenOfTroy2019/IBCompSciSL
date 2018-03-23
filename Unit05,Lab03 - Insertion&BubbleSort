@@ -1,0 +1,148 @@
+
+import java.util.Random;
+/**
+ * Lab03
+ * Driver03 can scramble, sort, and print an array of integers
+ * 
+ * @author Helen Sohn
+ * @version 3/22/18
+ * @teacher Coglianese
+ */
+public class Driver03
+{
+    /**
+     * main method of Driver03
+     * 
+     * @param args     String array of arguments
+     */
+    public static void main(String[] args)
+    {
+        int[] array = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109};
+        scramble(array);
+        print(array);
+        System.out.println("");
+        sort(array);
+        print(array);
+        System.out.println("");
+        scramble(array);
+        print(array);
+        System.out.println("");
+        bubbleSort(array);
+        print(array);
+        System.out.println("");
+        scramble(array);
+        print(array);
+        System.out.println("");
+        insertionSort(array);
+        print(array);
+    }
+
+    /**
+     * scrambles the order of integers in an array
+     * 
+     * @param a     array that is scrambled
+     */
+    public static void scramble(int[] a)
+    {
+        int length = a.length;
+        for(int x=0; x<length; x++)
+        {
+            swap(a, x, new Random().nextInt(6));
+        }
+    }
+
+    /**
+     * prints all the values in an array
+     * 
+     * @param a     array that is printed
+     */
+    public static void print(int[] a)
+    {
+        for(int x=0; x<a.length; x++)
+        {
+            System.out.println(a[x]);
+        }
+    }
+
+    /**
+     * sorts values in an array 
+     * 
+     * @param a     array that is sorted
+     */
+    public static void sort(int[] a)
+    {
+        int maxPos;
+        for(int x=0; x<a.length; x++)
+        {
+            maxPos = findMax(a, a.length-x-1);
+            swap(a, maxPos, a.length-x-1);
+        }
+    }
+
+    /**
+     * finds the biggest value in an array
+     * 
+     * @param a         array of integer values
+     * @param upper     size of the array
+     */
+    public static int findMax(int[] a, int upper)
+    {
+        int index=0;
+        for(int x=0; x<upper; x++)
+        {
+            if(a[x]>a[index])
+                index = x;
+        }
+        return index;
+    }
+    
+    /**
+     * swaps two given values of an array
+     * 
+     * @param array     array with the two integers
+     * @param a         first value that is swapped
+     * @param b         second value that is swapped
+     */
+    public static void swap(int[] array, int a, int b)
+    {
+        int temp = array[a];
+        array[a]= array[b];
+        array[b] = temp;
+    }
+    
+    /**
+     * uses bubbleSort to organize an array
+     * 
+     * @param array     array that is sorted
+     */
+    public static void bubbleSort(int[] array)
+    {
+        int first = 0;
+        for(int x=array.length; x>0; x--)
+        {
+            for(int y=1; y<array.length; y++)
+            {
+                if(array[first]>array[y])
+                {
+                    swap(array, first, y);
+                }
+            }
+            first = 0;
+        }
+    }
+    
+    /**
+     * uses insertionSort to organize an array
+     * 
+     * @param array     array that is sorted
+     */
+    public static void insertionSort(int[] array)
+    {
+        int last = array.length-1;
+        for(int x=0; x<array.length; x++)
+        {
+            int max = findMax(array, array.length);
+            swap(array, max, last);
+        }
+    }
+}
